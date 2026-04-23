@@ -8,14 +8,23 @@ Sentry.init({
   environment: "production",
 });
 
-const user = createUser("Arjun Sutaria", "arjun.sutaria@sentry.io");
-console.log("Welcome:", getUserDisplayName(user));
+try {
+  const user = createUser("Arjun Sutaria", "arjun.sutaria@sentry.io");
+  console.log("Welcome:", getUserDisplayName(user));
 
-let cart = [];
-cart = addToCart(cart, { id: "widget-1", name: "Widget", price: 9.99, quantity: 2 });
-cart = addToCart(cart, { id: "gadget-1", name: "Gadget", price: 24.99, quantity: 1 });
+  let cart = [];
+  cart = addToCart(cart, { id: "widget-1", name: "Widget", price: 9.99, quantity: 2 });
+  cart = addToCart(cart, { id: "gadget-1", name: "Gadget", price: 24.99, quantity: 1 });
 
-console.log("Cart total:", getCartTotal(cart));
+  const total = getCartTotal(cart);
 
-const discountedTotal = applyDiscount(cart, "SAVE10");
-console.log("Discounted total:", discountedTotal);
+  if (isNaN(total)) {
+    throw new Error("Checkout failed: cart total is NaN — item.qty is undefined");
+  }
+
+  const discountedTotal = applyDiscount(cart, "SAVE10");
+  console.log("Discounted total:", discountedTotal);
+} catch (error) {
+  Sentry.captureException(error);
+  console.error("Error captured:", error.message);
+}
