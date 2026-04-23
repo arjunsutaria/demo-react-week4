@@ -10,7 +10,7 @@ export function removeFromCart(cart, itemId) {
 }
 
 export function getCartTotal(cart) {
-  return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 }
 
 export function applyDiscount(cart, discountCode) {
