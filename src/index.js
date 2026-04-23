@@ -2,7 +2,7 @@ import * as Sentry from "@sentry/browser";
 
 Sentry.init({
   dsn: "https://3fbcdbf0aa8317741c9fb5b323d47f8f@o88872.ingest.us.sentry.io/4511158858940416",
-  release: "1.0.0-demo",
+  release: "1.1.0-demo",
   environment: "production",
 });
 
