@@ -17,11 +17,6 @@ try {
   cart = addToCart(cart, { id: "gadget-1", name: "Gadget", price: 24.99, quantity: 1 });
 
   const total = getCartTotal(cart);
-
-  if (isNaN(total)) {
-    throw new Error("Checkout failed: cart total is NaN — item.qty is undefined");
-  }
-
   const discountedTotal = applyDiscount(cart, "SAVE10");
   console.log("Discounted total:", discountedTotal);
 } catch (error) {

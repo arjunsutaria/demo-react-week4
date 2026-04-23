@@ -10,7 +10,12 @@ export function removeFromCart(cart, itemId) {
 }
 
 export function getCartTotal(cart) {
-  return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  return cart.reduce((sum, item) => {
+    if (item.qty === undefined) {
+      throw new Error(`Checkout failed: item "${item.name}" is missing qty field`);
+    }
+    return sum + item.price * item.qty;
+  }, 0);
 }
 
 export function applyDiscount(cart, discountCode) {
