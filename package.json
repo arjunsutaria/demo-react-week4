@@ -1,0 +1,10 @@
+{
+  "name": "sentry-demo",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "esbuild src/index.js --bundle --sourcemap --outdir=dist --minify"
+  },
+  "devDependencies": {
+    "esbuild": "^0.21.0"
+  }
+}
