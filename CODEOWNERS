@@ -1,0 +1,10 @@
+# CODEOWNERS
+# Format: file-pattern @owner
+
+# Arjun owns all cart and user logic
+src/cart.js @arjunsutaria
+src/user.js @arjunsutaria
+src/index.js @arjunsutaria
+
+# Catch-all — Arjun owns everything else too
+* @arjunsutaria
