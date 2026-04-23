@@ -1,6 +1,6 @@
 export function addToCart(cart, item) {
-  if (!item.id || !item.price) {
-    throw new Error("Invalid item: missing id or price");
+  if (!item.id || !item.price || item.quantity === undefined) {
+    throw new Error("Invalid item: missing id, price, or quantity");
   }
   return [...cart, item];
 }
@@ -11,10 +11,10 @@ export function removeFromCart(cart, itemId) {
 
 export function getCartTotal(cart) {
   return cart.reduce((sum, item) => {
-    if (item.qty === undefined) {
-      throw new Error(`Checkout failed: item "${item.name}" is missing qty field`);
+    if (item.quantity === undefined) {
+      throw new Error(`Checkout failed: item "${item.name}" is missing quantity field`);
     }
-    return sum + item.price * item.qty;
+    return sum + item.price * item.quantity;
   }, 0);
 }
 
